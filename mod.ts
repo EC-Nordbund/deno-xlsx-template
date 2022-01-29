@@ -1,10 +1,10 @@
 import XlsxTemplate from "./dist/xlsx.js";
 
-type primitive = boolean | Date | number | string;
-type primitiveObject = Record<string, primitive>;
+export type primitive = boolean | Date | number | string;
+export type primitiveObject = Record<string, primitive>;
 
-type arrayable = primitive | primitiveObject;
-type data = Record<string, primitive | arrayable[]>;
+export type arrayable = primitive | primitiveObject;
+export type data = Record<string, primitive | arrayable[]>;
 
 export default (
   file: ArrayBufferLike | Blob | Uint8Array,

@@ -2,7 +2,6 @@ import commonjs from "@rollup/plugin-commonjs";
 import node from "@rollup/plugin-node-resolve"
 import { readFileSync, writeFileSync } from "fs";
 import { join, dirname } from "path";
-import replace from "@rollup/plugin-replace";
 
 const file = join(dirname(require.resolve('xlsx-template')), './index.d.ts')
 
@@ -27,9 +26,10 @@ export default {
         return deno[id]
       }
     }
-  }, node(), commonjs(), replace({
-    "Buffer.isBuffer(data)": false
-  })],
+  }, {
+    transform(code) {
+      return code.replaceAll('Buffer.isBuffer(data)', 'false')
+    }
+  }, node(), commonjs()],
   external: Object.values(deno)
 }
-// Buffer.isBuffer(data)

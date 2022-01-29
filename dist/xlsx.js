@@ -12089,10 +12089,6 @@ var lib = (function() {
     Workbook.prototype.loadTemplate = function(data) {
         var self = this;
 
-        if(Buffer.isBuffer(data)) {
-            data = data.toString('binary');
-        }
-
         self.archive = new zip(data, {base64: false, checkCRC32: true});
 
         // Load relationships
